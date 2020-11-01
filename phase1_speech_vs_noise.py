@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 def tetsting_unit( ):
     tester = []
     import librosa
-    test, ans = librosa.load("D:/Dev_stuff/audio_dataset/chilla_detection.wav")
+    test, ans = librosa.load("D:/Dev_stuff/audio_dataset/")
     mfccs = np.mean(librosa.feature.mfcc(test, ans, n_mfcc=40).T, axis=0)
     tester.append(mfccs)
     tester = np.array(tester)
@@ -17,8 +17,8 @@ def tetsting_unit( ):
 
 x_train = genfromtxt('modified_data.csv', delimiter=',')
 y_train = genfromtxt('solution.csv',delimiter=',')
-print(x_train.shape, y_train.shape)
-clf = svm.SVC(kernel="rbf")
+#print(x_train.shape, y_train.shape)
+clf = svm.SVC(kernel="linear")
 clf.fit(x_train, y_train)
 prd=clf.predict(tetsting_unit())
 if prd[0] == 2:
